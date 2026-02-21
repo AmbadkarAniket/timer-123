@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>TEDx SAIT Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Color picker floating button -->
+    <div class="color-picker-wrapper" id="colorPickerWrapper">
+        <button class="color-btn" id="colorBtn" title="Change Color">🎨</button>
+        <div class="color-options" id="colorOptions">
+            <button class="color-swatch" data-bg="#ffffff" data-text="#000000"
+                style="background:#ffffff; border:2px solid #ccc;" title="White"></button>
+            <button class="color-swatch" data-bg="#000000" data-text="#ffffff" style="background:#000000;"
+                title="Black"></button>
+            <button class="color-swatch" data-bg="#1a1a2e" data-text="#e94560" style="background:#1a1a2e;"
+                title="Dark Red"></button>
+            <button class="color-swatch" data-bg="#0f0f23" data-text="#00d4ff" style="background:#0f0f23;"
+                title="Cyber Blue"></button>
+            <button class="color-swatch" data-bg="#1b1f3b" data-text="#f39c12" style="background:#1b1f3b;"
+                title="Dark Gold"></button>
+            <button class="color-swatch" data-bg="#0d1117" data-text="#58a6ff" style="background:#0d1117;"
+                title="GitHub Dark"></button>
+            <button class="color-swatch" data-bg="#fdf6e3" data-text="#073642" style="background:#fdf6e3;"
+                title="Solarized Light"></button>
+            <button class="color-swatch" data-bg="#282c34" data-text="#61dafb" style="background:#282c34;"
+                title="React Dark"></button>
+            <button class="color-swatch" data-bg="#000000" data-text="#888888"
+                style="background:#000000; border:2px solid #444;" title="Black & Gray"></button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" id="container">
+        <!-- Logo -->
+        <header class="logo-area">
+            <img src="logo.png" alt="TEDx SAIT – Uncluttered Futures" class="logo-img" id="logoImg">
+        </header>
+
+        <!-- Timer -->
+        <main class="timer-area" id="timerArea">
+            <div class="timer-display" id="timerDisplay">
+                <span class="minutes" id="minutes">18</span>
+                <span class="colon">:</span>
+                <span class="seconds" id="seconds">00</span>
+            </div>
+            <div class="tap-hint" id="tapHint">tap timer to pause</div>
+        </main>
+
+        <!-- Controls (hidden when running, visible when paused) -->
+        <footer class="controls" id="controls">
+            <button class="ctrl-btn resume-btn" id="resumeBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5,3 19,12 5,21" />
+                </svg>
+                Resume
+            </button>
+            <button class="ctrl-btn reload-btn" id="reloadBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10" />
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                </svg>
+                Reload
+            </button>
+            <button class="ctrl-btn fullscreen-btn" id="fullscreenBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 3 21 3 21 9" />
+                    <polyline points="9 21 3 21 3 15" />
+                    <line x1="21" y1="3" x2="14" y2="10" />
+                    <line x1="3" y1="21" x2="10" y2="14" />
+                </svg>
+                Fullscreen
+            </button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

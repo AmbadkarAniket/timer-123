@@ -1,0 +1,302 @@
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --accent: #e62b1e;
+  --control-bg: #000000;
+  --control-text: #ffffff;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ── Color Picker ── */
+.color-picker-wrapper {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.color-picker-wrapper.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.color-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(128, 128, 128, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.color-options {
+  position: absolute;
+  top: 54px;
+  right: 0;
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  width: 160px;
+}
+
+.color-options.open {
+  display: flex;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.2);
+  border-color: var(--accent);
+}
+
+/* ── Container ── */
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Logo ── */
+.logo-area {
+  text-align: center;
+  margin-bottom: 2vh;
+}
+
+.logo-img {
+  height: clamp(70px, 12vh, 180px);
+  width: auto;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+.logo-img.dark-logo {
+  /* height: clamp(90px, 15vh, 220px); */
+  height: clamp(6px, 15vh, 340px);
+  width: auto;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+/* ── Timer ── */
+.timer-area {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.timer-display {
+  font-weight: 900;
+  font-size: clamp(100px, 28vw, 320px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  transition: color 0.4s ease, opacity 0.15s ease;
+}
+
+.timer-display:active {
+  opacity: 0.7;
+}
+
+.colon {
+  margin: 0 0.02em;
+  position: relative;
+  top: -0.04em;
+}
+
+.tap-hint {
+  font-size: clamp(10px, 1.4vw, 14px);
+  opacity: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 1vh;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.timer-area:hover .tap-hint {
+  opacity: 0.35;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  gap: 16px;
+  margin-top: 4vh;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.controls.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.ctrl-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 2px solid var(--text);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px, 1.6vw, 16px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resume-btn {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.resume-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.04);
+}
+
+.reload-btn {
+  background: transparent;
+  color: var(--text);
+}
+
+.reload-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+  transform: scale(1.04);
+}
+
+.fullscreen-btn {
+  background: transparent;
+  color: var(--text);
+}
+
+.fullscreen-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+  transform: scale(1.04);
+}
+
+/* ── Paused state pulsing colon ── */
+.timer-display.paused .colon {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Warning colors ── */
+.timer-display.warning {
+  color: #e67e22 !important;
+}
+
+.timer-display.danger {
+  color: #e74c3c !important;
+  animation: pulse 0.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ── Responsive tweaks ── */
+@media (max-width: 600px) {
+  .color-picker-wrapper {
+    top: 10px;
+    right: 10px;
+  }
+
+  .color-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .ctrl-btn {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-height: 500px) {
+  .logo-area {
+    margin-bottom: 1vh;
+  }
+
+  .controls {
+    margin-top: 2vh;
+  }
+}
